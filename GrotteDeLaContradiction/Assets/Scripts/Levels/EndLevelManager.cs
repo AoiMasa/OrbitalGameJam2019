@@ -8,21 +8,33 @@ public class EndLevelManager : MonoBehaviour {
     [SerializeField]
     private string nextLevel = "MainMenu";
 
+
+    private bool hasToRestart;
+
     // Use this for initialization
     void Start () {
-		
-	}
+        hasToRestart = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
+    public void OnPlayerFollowedRules(GameEventMessage message)
+    {
+        hasToRestart = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(nextLevel);
+            if (hasToRestart)
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            else
+                SceneManager.LoadScene(nextLevel);
         }
     }
 }

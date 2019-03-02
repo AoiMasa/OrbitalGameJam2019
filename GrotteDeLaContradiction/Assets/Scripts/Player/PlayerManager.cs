@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -25,6 +26,11 @@ public class PlayerManager : MonoBehaviour
     private bool isTouchingWall;
     [SerializeField]
     private bool isPunching;
+
+
+    [Header("Game events")]
+    [SerializeField]
+    private GameEvent playerFollowedRules;
 
     private Transform standardMode;
     private Transform punchMode;
@@ -146,6 +152,14 @@ public class PlayerManager : MonoBehaviour
         else isPunching = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+         if (collision.gameObject.tag == "Rule")
+        {
+            playerFollowedRules.Fire(new GameEventMessage(this));
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
@@ -161,6 +175,7 @@ public class PlayerManager : MonoBehaviour
             //Debug.Log("Touché3");
            // https://answers.unity.com/questions/1283208/running-into-enemies-moves-them-how-to-stop-this.html
         }
+        
     }
 
     private void OnCollisionStay2D(Collision2D collision)

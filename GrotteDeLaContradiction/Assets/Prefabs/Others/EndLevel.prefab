@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2526895123276410298}
   - component: {fileID: 2526895123276410299}
   - component: {fileID: 2526895123276410296}
+  - component: {fileID: 61081545}
   m_Layer: 0
   m_Name: EndLevel
   m_TagString: Untagged
@@ -70,3 +71,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d826628b201121f40b595017c5e00190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevel: FinalLevel
+--- !u!114 &61081545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2526895123276410297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179f728412c501a449d4743197cbc642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvents:
+  - {fileID: 11400000, guid: f96fdbbce889ad146bc0c93542a743b4, type: 2}
+  myEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2526895123276410296}
+        m_MethodName: OnPlayerFollowedRules
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityMyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
