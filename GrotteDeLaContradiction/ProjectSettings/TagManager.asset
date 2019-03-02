@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Rule
   - music
+  - Light
   layers:
   - Default
   - TransparentFX

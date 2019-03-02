@@ -24,8 +24,6 @@ public class PlayerManager : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private bool isTouchingWall;
-    [SerializeField]
-    private bool isPunching;
 
 
     [Header("Game events")]
@@ -33,28 +31,27 @@ public class PlayerManager : MonoBehaviour
     private GameEvent playerFollowedRules;
 
     private Transform standardMode;
-    private Transform punchMode;
+
+    private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private Sprite lightSprite;
 
     // Use this for initialization
     void Start()
     {
         rigidbodyComponent = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
         standardMode = this.transform.Find("StandardMode");
-        punchMode = this.transform.Find("PunchMode");
 
         isGrounded = true;
         isTouchingWall = false;
-        isPunching = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         animator.SetBool("IsGrounded", isGrounded);
-        animator.SetBool("IsPunching", isPunching);
-        standardMode.gameObject.SetActive(!isPunching);
-        punchMode.gameObject.SetActive(isPunching);
 
         float currentRunSpeed;
         if (!Input.GetButton("Horizontal"))
@@ -74,7 +71,6 @@ public class PlayerManager : MonoBehaviour
     {
         MovePlayer();
         JumpPlayer();
-        PunchPlayer();
         //  Debug.Log("x:" + rigidbodyComponent.velocity.x + "- y:" + rigidbodyComponent.velocity.y);
 
     }
@@ -142,21 +138,16 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void PunchPlayer()
-    {
-        if (Input.GetButton("Fire1"))
-        {
-            isPunching = true;
-
-        }
-        else isPunching = false;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
          if (collision.gameObject.tag == "Rule")
         {
             playerFollowedRules.Fire(new GameEventMessage(this));
+        }
+         else if (collision.gameObject.tag == "Light")
+        {
+            spriteRenderer.sprite = lightSprite;
         }
     }
 
