@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class EndLevelManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private string nextLevel = "MainMenu";
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -19,7 +22,7 @@ public class EndLevelManager : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(nextLevel);
         }
     }
 }
