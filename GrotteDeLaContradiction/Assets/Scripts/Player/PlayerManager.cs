@@ -63,14 +63,15 @@ public class PlayerManager : MonoBehaviour
         animator.SetFloat("CurrentRunSpeed", Mathf.Abs(currentRunSpeed));
 
         ChangeFacingDirection();
+        MovePlayer();
+        JumpPlayer();
 
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
-        MovePlayer();
-        JumpPlayer();
+
         //  Debug.Log("x:" + rigidbodyComponent.velocity.x + "- y:" + rigidbodyComponent.velocity.y);
 
     }

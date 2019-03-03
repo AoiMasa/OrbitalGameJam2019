@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/FinalLevel.unity
     guid: 83319ce2eac7b6a4d8f02be942bf31c3
   - enabled: 1
+    path: Assets/Scenes/Levels/Chest.unity
+    guid: 1ff8030de34aa514b93ba06c7105df28
+  - enabled: 1
     path: Assets/Scenes/Others/GameOver.unity
     guid: 0cb1419be8783474d9f95803b2f2f086
   - enabled: 1
