@@ -284,6 +284,7 @@ MonoBehaviour:
   isTouchingWall: 0
   playerFollowedRules: {fileID: 11400000, guid: f96fdbbce889ad146bc0c93542a743b4,
     type: 2}
+  lightSprite: {fileID: 21300000, guid: ae95e4f60ea4dd149b8f49b812b040dd, type: 3}
 --- !u!95 &95102884532612822
 Animator:
   serializedVersion: 3
