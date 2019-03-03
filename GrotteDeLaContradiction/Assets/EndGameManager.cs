@@ -13,18 +13,27 @@ public class EndGameManager : MonoBehaviour
 
     private bool hasPlayedSound;
 
+    private SpriteRenderer spriteRenderer;
+
     // Use this for initialization
     void Start()
     {
         hasPlayedSound = false;
         audioSource = this.GetComponent<AudioSource>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (hasPlayedSound)
+        {
+            if (!audioSource.isPlaying)
+            {
+                SceneManager.LoadScene(nextLevel);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,7 +48,8 @@ public class EndGameManager : MonoBehaviour
                     audioSource.time = 10;
                     audioSource.Play();
                     hasPlayedSound = true;
-                    collision.gameObject.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                    spriteRenderer.enabled = false;
+                   // collision.gameObject.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 }
             }
            
@@ -51,13 +61,7 @@ public class EndGameManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (hasPlayedSound)
-            {
-                if (!audioSource.isPlaying)
-                {
-                    SceneManager.LoadScene(nextLevel);
-                }
-            }
+            
 
 
         }
