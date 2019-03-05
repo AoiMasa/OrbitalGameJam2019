@@ -1022,16 +1022,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2526895123276410297, guid: 9ba0dcc12bbe322438000d18f84271d0,
-        type: 3}
-      propertyPath: m_Name
-      value: FakeEndLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2526895123276410297, guid: 9ba0dcc12bbe322438000d18f84271d0,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 2526895123276410298, guid: 9ba0dcc12bbe322438000d18f84271d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1087,6 +1077,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2526895123276410297, guid: 9ba0dcc12bbe322438000d18f84271d0,
+        type: 3}
+      propertyPath: m_Name
+      value: FakeEndLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526895123276410297, guid: 9ba0dcc12bbe322438000d18f84271d0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2526895123276410296, guid: 9ba0dcc12bbe322438000d18f84271d0,
         type: 3}
       propertyPath: nextLevel
@@ -1101,16 +1101,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2526895123276410297, guid: 9ba0dcc12bbe322438000d18f84271d0,
-        type: 3}
-      propertyPath: m_Name
-      value: TrueEndLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2526895123276410297, guid: 9ba0dcc12bbe322438000d18f84271d0,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 2526895123276410298, guid: 9ba0dcc12bbe322438000d18f84271d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1165,6 +1155,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526895123276410297, guid: 9ba0dcc12bbe322438000d18f84271d0,
+        type: 3}
+      propertyPath: m_Name
+      value: TrueEndLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526895123276410297, guid: 9ba0dcc12bbe322438000d18f84271d0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2526895123276410296, guid: 9ba0dcc12bbe322438000d18f84271d0,
         type: 3}
