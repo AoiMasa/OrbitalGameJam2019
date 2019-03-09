@@ -158,29 +158,15 @@ public class PlayerManager : MonoBehaviour
         {
             isTouchingWall = true;
         }
-        else if (collision.gameObject.tag == "Enemy")
-        {
-
-            //Rigidbody2D rbody = collision.gameObject.GetComponent<Rigidbody2D>();
-            //rbody.velocity = Vector3.zero;
-            //rbody.isKinematic = true;
-            //Debug.Log("Touché3");
-           // https://answers.unity.com/questions/1283208/running-into-enemies-moves-them-how-to-stop-this.html
-        }
-        
+       
     }
 
     private void OnCollisionStay2D(Collision2D collision)
-    { 
-        
-        // if (collision.gameObject.tag == "Enemy")
-        //{
-
-        //    Rigidbody2D rbody = collision.gameObject.GetComponent<Rigidbody2D>();
-        //    rbody.velocity = Vector3.zero;
-        //    Debug.Log("stay");
-        //}
-
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            isTouchingWall = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
