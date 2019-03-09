@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class KeyDetectionManager : MonoBehaviour
 {
+    [SerializeField]
+    private string submitScene = null;
+    [SerializeField]
+    private string cancelScene = null;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +19,13 @@ public class KeyDetectionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Submit"))
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(submitScene);
+        }
+        else if (Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene(cancelScene);
         }
     }
 }
