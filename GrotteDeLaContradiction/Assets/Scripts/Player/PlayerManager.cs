@@ -165,7 +165,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-            isTouchingWall = true;
+            if (isGrounded) isTouchingWall = false;
+            else isTouchingWall = true;
+
+
         }
     }
 
@@ -174,6 +177,7 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             isTouchingWall = false;
+
         }
      
     }
