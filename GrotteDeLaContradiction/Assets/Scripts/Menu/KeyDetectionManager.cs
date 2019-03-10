@@ -29,7 +29,7 @@ public class KeyDetectionManager : MonoBehaviour
         }
         else if (Input.GetButtonDown("Exit"))
         {
-            Application.Quit();
+            if (Application.platform != RuntimePlatform.WebGLPlayer) Application.Quit();
         }
     }
 }
