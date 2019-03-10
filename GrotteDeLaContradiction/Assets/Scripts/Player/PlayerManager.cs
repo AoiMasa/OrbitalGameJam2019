@@ -17,8 +17,11 @@ public class PlayerManager : MonoBehaviour
     private float fallMultiplier = 2.5f;
     [SerializeField]
     private float lowJumpMultiplier = 3f;
-   // [HideInInspector]
+    // [HideInInspector]
     public bool isGrounded;
+
+    // [HideInInspector]
+    public bool canJump;
 
     private Rigidbody2D rigidbodyComponent;
     private Animator animator;
@@ -46,6 +49,7 @@ public class PlayerManager : MonoBehaviour
 
         isGrounded = true;
         isTouchingWall = false;
+        canJump = true;
     }
 
     // Update is called once per frame
@@ -64,7 +68,7 @@ public class PlayerManager : MonoBehaviour
 
         ChangeFacingDirection();
         MovePlayer();
-        JumpPlayer();
+        if (canJump) JumpPlayer();
 
     }
 
@@ -125,7 +129,7 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidbodyComponent.velocity = Vector2.up * jumpSpeed;
-          
+
         }
         //Add gravity when player is falling to have a better jump feeling
         //https://www.youtube.com/watch?v=7KiK0Aqtmzc
@@ -142,13 +146,25 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-         if (collision.gameObject.tag == "Rule")
+        if (collision.gameObject.tag == "Rule")
         {
             playerFollowedRules.Fire(new GameEventMessage(this));
         }
-         else if (collision.gameObject.tag == "Light")
+        else if (collision.gameObject.tag == "Light")
         {
             spriteRenderer.sprite = lightSprite;
+        }
+        else if (collision.gameObject.tag == "ShittyW")
+        {
+            canJump = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ShittyW")
+        {
+            canJump = true;
         }
     }
 
@@ -158,29 +174,18 @@ public class PlayerManager : MonoBehaviour
         {
             isTouchingWall = true;
         }
-        else if (collision.gameObject.tag == "Enemy")
-        {
 
-            //Rigidbody2D rbody = collision.gameObject.GetComponent<Rigidbody2D>();
-            //rbody.velocity = Vector3.zero;
-            //rbody.isKinematic = true;
-            //Debug.Log("Touché3");
-           // https://answers.unity.com/questions/1283208/running-into-enemies-moves-them-how-to-stop-this.html
-        }
-        
     }
 
     private void OnCollisionStay2D(Collision2D collision)
-    { 
-        
-        // if (collision.gameObject.tag == "Enemy")
-        //{
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            if (isGrounded) isTouchingWall = false;
+            else isTouchingWall = true;
 
-        //    Rigidbody2D rbody = collision.gameObject.GetComponent<Rigidbody2D>();
-        //    rbody.velocity = Vector3.zero;
-        //    Debug.Log("stay");
-        //}
 
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -188,8 +193,10 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             isTouchingWall = false;
+
         }
-     
+
+
     }
 
 
