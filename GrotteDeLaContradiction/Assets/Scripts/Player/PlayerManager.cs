@@ -17,8 +17,11 @@ public class PlayerManager : MonoBehaviour
     private float fallMultiplier = 2.5f;
     [SerializeField]
     private float lowJumpMultiplier = 3f;
-   // [HideInInspector]
+    // [HideInInspector]
     public bool isGrounded;
+
+    // [HideInInspector]
+    public bool canJump;
 
     private Rigidbody2D rigidbodyComponent;
     private Animator animator;
@@ -46,6 +49,7 @@ public class PlayerManager : MonoBehaviour
 
         isGrounded = true;
         isTouchingWall = false;
+        canJump = true;
     }
 
     // Update is called once per frame
@@ -64,7 +68,7 @@ public class PlayerManager : MonoBehaviour
 
         ChangeFacingDirection();
         MovePlayer();
-        JumpPlayer();
+        if (canJump) JumpPlayer();
 
     }
 
@@ -125,7 +129,7 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidbodyComponent.velocity = Vector2.up * jumpSpeed;
-          
+
         }
         //Add gravity when player is falling to have a better jump feeling
         //https://www.youtube.com/watch?v=7KiK0Aqtmzc
@@ -142,13 +146,25 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-         if (collision.gameObject.tag == "Rule")
+        if (collision.gameObject.tag == "Rule")
         {
             playerFollowedRules.Fire(new GameEventMessage(this));
         }
-         else if (collision.gameObject.tag == "Light")
+        else if (collision.gameObject.tag == "Light")
         {
             spriteRenderer.sprite = lightSprite;
+        }
+        else if (collision.gameObject.tag == "ShittyW")
+        {
+            canJump = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ShittyW")
+        {
+            canJump = true;
         }
     }
 
@@ -158,7 +174,7 @@ public class PlayerManager : MonoBehaviour
         {
             isTouchingWall = true;
         }
-       
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -179,7 +195,8 @@ public class PlayerManager : MonoBehaviour
             isTouchingWall = false;
 
         }
-     
+
+
     }
 
 
