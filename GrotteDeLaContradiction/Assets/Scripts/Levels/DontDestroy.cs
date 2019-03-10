@@ -25,7 +25,7 @@ public class DontDestroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((SceneManager.GetActiveScene().name == "FinalLevel" || SceneManager.GetActiveScene().name == "Chest" || SceneManager.GetActiveScene().name == "MainMenu") && this.name != "MonsterNoise")
+        if (SceneManager.GetActiveScene().name == "FinalLevel" || SceneManager.GetActiveScene().name == "Chest" || SceneManager.GetActiveScene().name == "MainMenu")
         {
             Destroy(this.gameObject);
         }
