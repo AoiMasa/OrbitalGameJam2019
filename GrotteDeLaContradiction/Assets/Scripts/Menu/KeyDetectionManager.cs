@@ -21,11 +21,15 @@ public class KeyDetectionManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Submit"))
         {
-            SceneManager.LoadScene(submitScene);
+            if (!string.IsNullOrWhiteSpace(submitScene)) SceneManager.LoadScene(submitScene);
         }
         else if (Input.GetButtonDown("Cancel"))
         {
-            SceneManager.LoadScene(cancelScene);
+            if (!string.IsNullOrWhiteSpace(cancelScene)) SceneManager.LoadScene(cancelScene);
+        }
+        else if (Input.GetButtonDown("Exit"))
+        {
+            Application.Quit();
         }
     }
 }
